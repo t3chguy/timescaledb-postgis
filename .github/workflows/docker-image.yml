@@ -27,11 +27,12 @@ jobs:
         uses: docker/setup-buildx-action@v3
       # https://github.com/marketplace/actions/docker-login
       -
-        name: Login to DockerHub
-        uses: docker/login-action@v3
+        name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASS }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       # https://github.com/marketplace/actions/build-and-push-docker-images
       -
         name: Build and push
@@ -40,4 +41,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: xbgmsharp/timescaledb-postgis:latest
+          tags: ghcr.io/t3chguy/timescaledb-postgis:latest
