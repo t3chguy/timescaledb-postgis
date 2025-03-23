@@ -24,6 +24,7 @@ RUN apt-get -q update && \
         postgresql-16-postgis-3-scripts \
         postgresql-16-pgrouting \
         postgresql-16-pgrouting-scripts
+RUN echo "trusted = true" >> /usr/share/postgresql/16/extension/postgis.control
 
 ## pg_cron
 # https://github.com/citusdata/pg_cron
